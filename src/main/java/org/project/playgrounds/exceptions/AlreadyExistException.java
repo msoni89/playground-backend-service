@@ -1,4 +1,4 @@
-package org.project.exceptions;
+package org.project.playgrounds.exceptions;
 
 public class AlreadyExistException extends RuntimeException {
     public AlreadyExistException(String message) {

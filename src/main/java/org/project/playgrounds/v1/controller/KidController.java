@@ -8,6 +8,7 @@ import org.project.playgrounds.v1.dto.Kid;
 import org.project.playgrounds.v1.dto.KidRequest;
 import org.project.playgrounds.v1.service.IPlaygroundService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -18,6 +19,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1/kids")
 @AllArgsConstructor
+@Validated
 public class KidController {
 
     private final IPlaygroundService playgroundService;
@@ -31,7 +33,7 @@ public class KidController {
      */
     @PostMapping("/play-site/{play-site-id}")
     public ResponseEntity<String> addKidToPlaySite(
-            @Valid @NotEmpty @PathVariable("play-site-id") UUID playSiteUUID,
+            @NotNull @PathVariable("play-site-id") UUID playSiteUUID,
             @Valid @RequestBody KidRequest kidRequest) {
         Kid kid = playgroundService.addKidToPlaySite(playSiteUUID, kidRequest);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -49,8 +51,8 @@ public class KidController {
      */
     @DeleteMapping("/play-site/{play-site-id}/playing/{kid-id}")
     public ResponseEntity<Boolean> removeKidFromPlaySite(
-            @Valid @NotNull @PathVariable("play-site-id") UUID playSiteUUID,
-            @Valid @NotEmpty @PathVariable("kid-id") UUID kidUUID) {
+            @NotNull @PathVariable("play-site-id") UUID playSiteUUID,
+            @NotNull @PathVariable("kid-id") UUID kidUUID) {
         return ResponseEntity.ok().body(playgroundService.removeKidFromPlaySite(playSiteUUID, kidUUID));
     }
 
@@ -63,7 +65,7 @@ public class KidController {
      */
     @PostMapping("/play-site/{play-site-id}/queue")
     public ResponseEntity<String> enqueueKid(
-            @Valid @NotEmpty @PathVariable("play-site-id") UUID playSiteUUID,
+            @Valid @NotNull @PathVariable("play-site-id") UUID playSiteUUID,
             @Valid @RequestBody KidRequest kidRequest) {
         Kid kid = playgroundService.enqueueKid(playSiteUUID, kidRequest);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()

@@ -1,4 +1,4 @@
-package org.project.exceptions;
+package org.project.playgrounds.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

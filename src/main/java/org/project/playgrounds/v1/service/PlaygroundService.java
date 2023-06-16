@@ -1,9 +1,9 @@
 package org.project.playgrounds.v1.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.project.exceptions.*;
 import org.project.playgrounds.enums.EquipmentType;
 import org.project.playgrounds.enums.StatusType;
+import org.project.playgrounds.exceptions.*;
 import org.project.playgrounds.v1.dto.*;
 import org.project.playgrounds.v1.factory.PlaySiteUtilizationFactory;
 import org.project.playgrounds.v1.strategy.PlaySiteUtilization;
@@ -279,7 +279,6 @@ public class PlaygroundService implements IPlaygroundService {
 
         log.info("Looking for Kid By Id '{}', and play site by id '{}'", kidId, playSiteUUID);
 
-        System.out.println(playSite.kidsOnSite());
         // First check into onsite list
         Optional<Kid> kidInOnSite = playSite.kidsOnSite().stream()
                 .filter(kid -> kid.id().equals(kidId))

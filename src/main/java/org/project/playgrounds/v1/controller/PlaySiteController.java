@@ -9,6 +9,7 @@ import org.project.playgrounds.v1.dto.PlaySite;
 import org.project.playgrounds.v1.dto.PlaySiteResponse;
 import org.project.playgrounds.v1.service.IPlaygroundService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -19,6 +20,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1/play-sites")
 @AllArgsConstructor
+@Validated
 public class PlaySiteController {
 
     private final IPlaygroundService playgroundService;

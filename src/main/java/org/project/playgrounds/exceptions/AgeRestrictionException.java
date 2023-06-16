@@ -1,4 +1,4 @@
-package org.project.exceptions;
+package org.project.playgrounds.exceptions;
 
 public class AgeRestrictionException extends RuntimeException {
     public AgeRestrictionException(String message) {

@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import org.project.playgrounds.v1.service.IPlaygroundService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -11,6 +12,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/v1/analytics")
 @AllArgsConstructor
+@Validated
 public class AnalyticController {
 
     private final IPlaygroundService playgroundService;
