@@ -253,7 +253,7 @@ public class PlaygroundServiceTest {
         Kid kid = playgroundService.enqueueKid(playSiteUUID, kidRequest);
 
         // Remove the kid from the queue
-        playgroundService.removeKidFromQueue(playSiteUUID, kid.id());
+        playgroundService.dequeueKid(playSiteUUID, kid.id());
 
         // Verify that the kid is no longer present in the queue
         assertFalse(playgroundService.getPlaySite(playSiteUUID).kidQueue().contains(kidRequest));

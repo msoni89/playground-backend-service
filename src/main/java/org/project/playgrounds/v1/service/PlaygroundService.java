@@ -184,7 +184,7 @@ public class PlaygroundService implements IPlaygroundService {
     }
 
     @Override
-    public Boolean removeKidFromQueue(UUID uuid, UUID kidUUID) {
+    public Boolean dequeueKid(UUID uuid, UUID kidUUID) {
         // Validate that the play site exists.
         validatePlaySiteContainsKey(uuid);
 

@@ -10,7 +10,7 @@ public interface IPlaygroundService {
     Kid addKidToPlaySite(UUID uuid, KidRequest kid);
     Boolean removeKidFromPlaySite(UUID playSiteUUID, UUID kidId);
     Kid enqueueKid(UUID playSiteId, KidRequest kid);
-    Boolean removeKidFromQueue(UUID playSiteUUID, UUID kidId);
+    Boolean dequeueKid(UUID playSiteUUID, UUID kidId);
     Double getPlaySiteUtilization(UUID playSiteUUID);
     Integer getTotalVisitorCount();
     List<PlaySiteResponse> getPlaySites();

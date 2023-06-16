@@ -1,7 +1,6 @@
 package org.project.playgrounds.v1.controller;
 
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import org.project.playgrounds.v1.dto.Kid;
@@ -27,7 +26,7 @@ public class KidController {
     /**
      * Adds a kid to a play site.
      *
-     * @param kidRequest     The kid to add.
+     * @param kidRequest The kid to add.
      * @param 'play-site-id' The play site to add the kid to.
      * @return {@code UUID} if the kid was added successfully, or {throw exception if the play site is full.
      */
@@ -59,7 +58,7 @@ public class KidController {
     /**
      * Enqueues a kid to a play site.
      *
-     * @param kidRequest    The kid to enqueue.
+     * @param kidRequest The kid to enqueue.
      * @param 'play-site-id The play site to enqueue the kid to.
      * @return {@code Kid} if the kid was enqueued successfully, or {throw exeception} if the kid does not want to wait.
      */
@@ -79,14 +78,14 @@ public class KidController {
      * Removes a kid from a play queue.
      *
      * @param 'play-site-id The play site to dequeue the kid to.
-     * @param ;kid-id'      The kid to remove.
+     * @param ;kid-id' The kid to remove.
      * @return {@code true} if the kid was removed successfully, or {@code false} if the kid is not playing.
      */
     @DeleteMapping("/play-site/{play-site-id}/queue/{kid-id}")
     public ResponseEntity<Boolean> dequeueKid(
             @Valid @NotNull @PathVariable("play-site-id") UUID playSiteUUID,
             @Valid @NotNull @PathVariable("kid-id") UUID kidId) {
-        return ResponseEntity.ok().body(playgroundService.removeKidFromQueue(playSiteUUID, kidId));
+        return ResponseEntity.ok().body(playgroundService.dequeueKid(playSiteUUID, kidId));
     }
 
 
@@ -94,7 +93,7 @@ public class KidController {
      * Get kid from a play queue.
      *
      * @param 'play-site-id The play site to dequeue the kid to.
-     * @param ;kid-id'      The kid to remove.
+     * @param ;kid-id' The kid to remove.
      * @return {@code true} if the kid was removed successfully, or {@code false} if the kid is not playing.
      */
     @GetMapping("/play-site/{play-site-id}/queue/{kid-id}")
@@ -120,7 +119,7 @@ public class KidController {
      * Return kid from a play site.
      *
      * @param 'play-site-id The play site to dequeue the kid to.
-     * @param 'kid-id'      kid-id.
+     * @param 'kid-id' kid-id.
      * @return {@code Kid} if the kid was removed successfully, or throw not found exception
      */
     @GetMapping("/play-site/{play-site-id}/playing/{kid-id}")
