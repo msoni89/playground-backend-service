@@ -7,9 +7,8 @@ import org.project.playgrounds.enums.StatusType;
 import java.util.UUID;
 
 @JsonSerialize
-public record Kid(UUID id,
-                  String name,
+public record Kid(String name,
                   Integer age,
-                  @JsonProperty("ticket_number") String ticketNumber,
+                  @JsonProperty("ticket_number") UUID ticketNumber,
                   StatusType status) {
 }

@@ -52,7 +52,7 @@ public class KidControllerTest {
 
         String uuid = mvcResult.getResponse().getContentAsString();
         // Create a KidRequest object.
-        KidRequest kidRequest = new KidRequest("Kid1", 5, "123");
+        KidRequest kidRequest = new KidRequest("Kid1", 5);
 
         // Perform the POST request.
         MvcResult mvcKidResult = mockMvc.perform(post("/api/v1/kids/play-site/{id}", uuid)
@@ -67,7 +67,6 @@ public class KidControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.name", is("Kid1")))
-                .andExpect(jsonPath("$.ticket_number", is("123")))
                 .andExpect(jsonPath("$.status", is("PLAYING")));
     }
 
@@ -90,7 +89,7 @@ public class KidControllerTest {
         String uuid = mvcResult.getResponse().getContentAsString();
 
         // Create a KidRequest object.
-        KidRequest kidRequest = new KidRequest("Kid1", 5, "123");
+        KidRequest kidRequest = new KidRequest("Kid1", 5);
 
         // Perform the POST request.
         mockMvc.perform(post("/api/v1/kids/play-site/{id}", uuid)
@@ -119,7 +118,7 @@ public class KidControllerTest {
 
         String playSiteUUID = mvcResult.getResponse().getContentAsString();
         // Create a KidRequest object.
-        KidRequest kidRequest = new KidRequest("Kid1", 5, "123");
+        KidRequest kidRequest = new KidRequest("Kid1", 5);
 
         // Perform the POST request.
         MvcResult mvcKidResult = mockMvc.perform(post("/api/v1/kids/play-site/{id}", playSiteUUID)
@@ -128,18 +127,18 @@ public class KidControllerTest {
                 .andExpect(status().isCreated())
                 .andReturn();
 
-        String kidUUID = mvcKidResult.getResponse().getContentAsString();
+        String ticketNumber = mvcKidResult.getResponse().getContentAsString();
         mockMvc.perform(get(Objects.requireNonNull(mvcKidResult.getResponse().getRedirectedUrl()))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.name", is("Kid1")))
-                .andExpect(jsonPath("$.ticket_number", is("123")))
+                .andExpect(jsonPath("$.ticket_number", is(ticketNumber)))
                 .andExpect(jsonPath("$.status", is("PLAYING")));
 
         // Perform the DELETE request.
-        mockMvc.perform(delete("/api/v1/kids/play-site/{play-site-id}/playing/{kid-id}", playSiteUUID, kidUUID))
+        mockMvc.perform(delete("/api/v1/kids/play-site/{play-site-id}/playing/{ticket-number}", playSiteUUID, ticketNumber))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$").value(true));
@@ -164,7 +163,7 @@ public class KidControllerTest {
 
         String playSiteUUID = mvcResult.getResponse().getContentAsString();
         // Create a KidRequest object.
-        KidRequest kidRequest = new KidRequest("Kid1", 5, "123");
+        KidRequest kidRequest = new KidRequest("Kid1", 5);
 
         // SOMETHING wrong MOCKING NOT working.
 //        Mockito.when(random.nextInt(Mockito.anyInt())).thenReturn(0); // 50% chance of not accepting waiting
@@ -184,7 +183,6 @@ public class KidControllerTest {
                     .andExpect(status().isOk())
                     .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                     .andExpect(jsonPath("$.name", is("Kid1")))
-                    .andExpect(jsonPath("$.ticket_number", is("123")))
                     .andExpect(jsonPath("$.status", is("WAITING")));
         }
 

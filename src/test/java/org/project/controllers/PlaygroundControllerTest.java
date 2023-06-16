@@ -44,7 +44,7 @@ public class PlaygroundControllerTest {
         );
 
         // Perform the POST request.
-        MvcResult mvcResult =  mockMvc.perform(post("/api/v1/play-sites")
+        MvcResult mvcResult = mockMvc.perform(post("/api/v1/play-sites")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(mapper.writeValueAsString(request)))
                 .andExpect(status().isCreated())
@@ -108,7 +108,7 @@ public class PlaygroundControllerTest {
         );
 
         // Perform the POST request.
-        MvcResult mvcResult =  mockMvc.perform(post("/api/v1/play-sites")
+        MvcResult mvcResult = mockMvc.perform(post("/api/v1/play-sites")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(mapper.writeValueAsString(request)))
                 .andExpect(status().isCreated())

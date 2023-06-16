@@ -53,7 +53,7 @@ public class AnalyticControllerTest {
 
         String uuid = mvcResult.getResponse().getContentAsString();
         // Create a KidRequest object.
-        KidRequest kidRequest = new KidRequest("Kid1", 5, "123");
+        KidRequest kidRequest = new KidRequest("Kid1", 5);
 
         // Perform the POST request.
         MvcResult mvcKidResult = mockMvc.perform(post("/api/v1/kids/play-site/{id}", uuid)
@@ -68,7 +68,6 @@ public class AnalyticControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.name", is("Kid1")))
-                .andExpect(jsonPath("$.ticket_number", is("123")))
                 .andExpect(jsonPath("$.status", is("PLAYING")));
         // Make a request to the controller
         mockMvc.perform(get("/api/v1/analytics/play-site/{play-site-id}/utilization", uuid))
@@ -95,7 +94,7 @@ public class AnalyticControllerTest {
 
         String uuid = mvcResult.getResponse().getContentAsString();
         // Create a KidRequest object.
-        KidRequest kidRequest = new KidRequest("Kid1", 5, "123");
+        KidRequest kidRequest = new KidRequest("Kid1", 5);
 
         // Perform the POST request.
         MvcResult mvcKidResult = mockMvc.perform(post("/api/v1/kids/play-site/{id}", uuid)
@@ -110,7 +109,6 @@ public class AnalyticControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.name", is("Kid1")))
-                .andExpect(jsonPath("$.ticket_number", is("123")))
                 .andExpect(jsonPath("$.status", is("PLAYING")));
 
         // Make a request to the controller

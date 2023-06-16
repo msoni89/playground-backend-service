@@ -97,12 +97,11 @@ public class PlaygroundService implements IPlaygroundService {
             throw new AgeRestrictionException(message);
         }
 
-        UUID uuid = UUID.randomUUID();
+        UUID ticketNumberAsUUID = UUID.randomUUID();
         Kid kid = new Kid(
-                uuid,
                 kidRequest.name(),
                 kidRequest.age(),
-                kidRequest.ticketNumber(),
+                ticketNumberAsUUID,
                 StatusType.PLAYING
         );
 
@@ -114,7 +113,7 @@ public class PlaygroundService implements IPlaygroundService {
     }
 
     @Override
-    public Boolean removeKidFromPlaySite(UUID playSiteUUID, UUID kidId) {
+    public Boolean removeKidFromPlaySite(UUID playSiteUUID, UUID ticketNumber) {
         // Validate that the play site exists.
         validatePlaySiteContainsKey(playSiteUUID);
 
@@ -125,7 +124,7 @@ public class PlaygroundService implements IPlaygroundService {
         List<Kid> kidsOnSite = playSite.kidsOnSite();
 
         // Remove the kid from the list of kids on the play site.
-        boolean isRemoved = kidsOnSite.removeIf(kid -> kid.id().equals(kidId));
+        boolean isRemoved = kidsOnSite.removeIf(kid -> kid.ticketNumber().equals(ticketNumber));
 
         // If the kid was removed and there are still kids waiting to play, move the next kid from the waiting queue to the playing queue.
         if (isRemoved && kidsOnSite.size() < playSite.capacity() && !playSite.kidQueue().isEmpty()) {
@@ -136,7 +135,7 @@ public class PlaygroundService implements IPlaygroundService {
 
         // Log the removal of the kid.
         if (isRemoved) {
-            log.info("Removed kid '{}' from play site '{}'.", kidId, playSiteUUID);
+            log.info("Removed kid '{}' from play site '{}'.", ticketNumber, playSiteUUID);
         }
 
         return isRemoved;
@@ -162,12 +161,11 @@ public class PlaygroundService implements IPlaygroundService {
         }
 
         // Create a new kid.
-        UUID uuid = UUID.randomUUID();
+        UUID ticketNumberAsUUID = UUID.randomUUID();
         Kid kid = new Kid(
-                uuid,
                 kidRequest.name(),
                 kidRequest.age(),
-                kidRequest.ticketNumber(),
+                ticketNumberAsUUID,
                 StatusType.WAITING);
 
         // Enqueue the kid into the play site.
@@ -184,7 +182,7 @@ public class PlaygroundService implements IPlaygroundService {
     }
 
     @Override
-    public Boolean dequeueKid(UUID uuid, UUID kidUUID) {
+    public Boolean dequeueKid(UUID uuid, UUID ticketNumber) {
         // Validate that the play site exists.
         validatePlaySiteContainsKey(uuid);
 
@@ -192,11 +190,11 @@ public class PlaygroundService implements IPlaygroundService {
         PlaySite playSite = playSites.get(uuid);
 
         // Remove the kid from the queue.
-        boolean isRemoved = playSite.kidQueue().removeIf(kid -> kid.id().equals(kidUUID));
+        boolean isRemoved = playSite.kidQueue().removeIf(kid -> kid.ticketNumber().equals(ticketNumber));
 
         // Log the result.
         if (isRemoved) {
-            log.info("Removed kid with ID {} from the queue in the play site with ID {}.", kidUUID, uuid);
+            log.info("Removed kid with ticket-number {} from the queue in the play site ID {}.", ticketNumber, uuid);
         }
 
         // Return the result.
@@ -273,15 +271,15 @@ public class PlaygroundService implements IPlaygroundService {
     }
 
     @Override
-    public Kid getPlayingKid(UUID playSiteUUID, UUID kidId) {
+    public Kid getPlayingKid(UUID playSiteUUID, UUID ticketNumber) {
         validatePlaySiteContainsKey(playSiteUUID);
         PlaySite playSite = playSites.get(playSiteUUID);
 
-        log.info("Looking for Kid By Id '{}', and play site by id '{}'", kidId, playSiteUUID);
+        log.info("Looking for Kid By ticket-number '{}', and play site by id '{}'", ticketNumber, playSiteUUID);
 
         // First check into onsite list
         Optional<Kid> kidInOnSite = playSite.kidsOnSite().stream()
-                .filter(kid -> kid.id().equals(kidId))
+                .filter(kid -> kid.ticketNumber().equals(ticketNumber))
                 .findFirst();
 
         // If kid is present onsite, return kid
@@ -290,7 +288,7 @@ public class PlaygroundService implements IPlaygroundService {
         }
 
         // If kid is not present in queue, throw NotFoundException
-        throw new NotFoundException(String.format("Kid with id '{%s}' does not present on play site '{%s}'", kidId, playSiteUUID));
+        throw new NotFoundException(String.format("Kid with ticket-number '{%s}' does not present on play site '{%s}'", ticketNumber, playSiteUUID));
     }
 
     @Override
@@ -335,13 +333,13 @@ public class PlaygroundService implements IPlaygroundService {
     }
 
     @Override
-    public Kid getQueueKid(UUID playSiteUUID, UUID kidId) {
+    public Kid getQueueKid(UUID playSiteUUID, UUID ticketNumber) {
         validatePlaySiteContainsKey(playSiteUUID);
         PlaySite playSite = playSites.get(playSiteUUID);
 
         // If kid is not present onsite, check into queue
         Optional<Kid> kidInQueue = playSite.kidQueue().stream()
-                .filter(kid -> kid.id().equals(kidId))
+                .filter(kid -> kid.ticketNumber().equals(ticketNumber))
                 .findFirst();
 
         // If kid is present in queue, return kid
@@ -350,7 +348,7 @@ public class PlaygroundService implements IPlaygroundService {
         }
 
         // If kid is not present in queue, throw NotFoundException
-        throw new NotFoundException(String.format("Kid with id '{%s}' does not present on play site queue '{%s}'", kidId, playSiteUUID));
+        throw new NotFoundException(String.format("Kid with ticket-number '{%s}' does not present on play site queue '{%s}'", ticketNumber, playSiteUUID));
     }
 
     private void validatePlaySiteContainsKey(UUID uuid) {

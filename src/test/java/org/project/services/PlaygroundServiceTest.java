@@ -61,19 +61,19 @@ public class PlaygroundServiceTest {
         ));
 
         // Add more kids than the capacity allows
-        Kid addKidToPlaySite = playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest("Kid1", 5, "ticket-number-0001"));
+        Kid addKidToPlaySite = playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest("Kid1", 5));
         // Verify that the kid is added to the play site
         assertTrue(playgroundService.getPlaySite(playSiteUUID).kidsOnSite().contains(addKidToPlaySite));
 
         // Attempt to add another kid, which will exceed the capacity
         assertThrows(PlaySiteFullException.class, () -> {
-            playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest("Kid2", 6, "ticket-number-0002"));
+            playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest("Kid2", 6));
         });
 
         // Verify that the second kid is not added to the play site
         assertEquals(1, playgroundService.getPlaySite(playSiteUUID).kidsOnSite().size());
 
-        Kid enqueuedKid = playgroundService.enqueueKid(playSiteUUID, new KidRequest("Kid2", 6, "ticket-number-0002"));
+        Kid enqueuedKid = playgroundService.enqueueKid(playSiteUUID, new KidRequest("Kid2", 6));
         // Verify that the second kid is added to the queue
         assertTrue(playgroundService.getPlaySite(playSiteUUID).kidQueue().contains(enqueuedKid));
     }
@@ -88,7 +88,7 @@ public class PlaygroundServiceTest {
         ));
 
         // Try to add a kid who is younger than the age restriction to the play site.
-        KidRequest kidRequest = new KidRequest("Kid1", 5, "123");
+        KidRequest kidRequest = new KidRequest("Kid1", 5);
         try {
             playgroundService.addKidToPlaySite(playSiteUUID, kidRequest);
             fail("Expected AgeRestrictionException to be thrown");
@@ -111,14 +111,14 @@ public class PlaygroundServiceTest {
         ));
 
         // Add a kid to the play site.
-        KidRequest kidRequest1 = new KidRequest("Kid1", 5, "123");
+        KidRequest kidRequest1 = new KidRequest("Kid1", 5);
         Kid kid1 = playgroundService.addKidToPlaySite(playSiteUUID, kidRequest1);
 
         // Verify that the kid was added to the play site.
-        assertEquals(kid1.ticketNumber(), kidRequest1.ticketNumber());
+        assertEquals(kid1.name(), kidRequest1.name());
 
         // Attempt to add another kid to the full play site.
-        KidRequest kidRequest2 = new KidRequest("Kid2", 6, "456");
+        KidRequest kidRequest2 = new KidRequest("Kid2", 6);
         assertThrows(PlaySiteFullException.class, () -> {
             // This should throw a PlaySiteFullException.
             playgroundService.addKidToPlaySite(playSiteUUID, kidRequest2);
@@ -134,20 +134,19 @@ public class PlaygroundServiceTest {
                 ))
         ));
         // Add a kid to the play site
-        Kid kid2 = playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest("Kid1", 5, "123"));
+        Kid kid2 = playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest("Kid1", 5));
         // Verify that the kid was added to the play site.
-        assertEquals(kid2.ticketNumber(), "123");
+        assertEquals(kid2.name(), "Kid1");
         assertThrows(PlaySiteFullException.class, () -> {
             // Verify that the second kid is added to the queue
-            playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest("Kid2", 5, "124"));
+            playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest("Kid2", 5));
         });
 
         Mockito.when(random.nextInt(Mockito.anyInt())).thenReturn(0); // 50% chance of not accepting waiting
         // Attempt to add another kid to the queue play site, expected true
-        KidRequest kidRequest = new KidRequest("Kid3", 6, "456");
+        KidRequest kidRequest = new KidRequest("Kid3", 6);
         Kid kid = playgroundService.enqueueKid(playSiteUUID, kidRequest);
         // Verify that the second kid is added to the queue
-        assertEquals(kidRequest.ticketNumber(), kid.ticketNumber());
         assertEquals(kidRequest.name(), kid.name());
     }
 
@@ -160,16 +159,16 @@ public class PlaygroundServiceTest {
                 ))
         ));
         // Add a kid to the play site
-        Kid kid1 = playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest("Kid1", 5, "123"));
+        Kid kid1 = playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest("Kid1", 5));
         // Verify that the kid was added to the play site.
-        assertEquals(kid1.ticketNumber(), "123");
+        assertEquals(kid1.name(), "Kid1");
         assertThrows(PlaySiteFullException.class, () -> {
-            playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest("Kid2", 5, "124"));
+            playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest("Kid2", 5));
         });
         Mockito.when(random.nextInt(Mockito.anyInt())).thenReturn(1); // 50% chance of not accepting waiting
         // Attempt to add another kid to the full play site, will reject with false
         assertThrows(EnqueueRequestRejected.class, () -> {
-            KidRequest kidRequest = new KidRequest("Kid3", 6, "456");
+            KidRequest kidRequest = new KidRequest("Kid3", 6);
             playgroundService.enqueueKid(playSiteUUID, kidRequest);
         });
         // Verify that the second kid is added to the queue
@@ -185,25 +184,25 @@ public class PlaygroundServiceTest {
         ));
 
         // Add a kid to the play site
-        Kid kid1 = playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest("Kid1", 6, "123"));
+        Kid kid1 = playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest("Kid1", 6));
 
         // Try to add another kid to the play site, expected PlaySiteFullException
         assertThrows(PlaySiteFullException.class, () -> {
-            playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest("Kid2", 5, "124"));
+            playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest("Kid2", 5));
         });
 
         // Enqueue the second kid
-        KidRequest kidRequest = new KidRequest("Kid3", 6, "456");
+        KidRequest kidRequest = new KidRequest("Kid3", 6);
 
         Kid kid = playgroundService.enqueueKid(playSiteUUID, kidRequest);
         // Verify that the kid was added to the play site.
-        assertEquals(kid.ticketNumber(), "456");
+        assertEquals(kid.name(), kidRequest.name());
         // Remove the first kid from the play site
-        playgroundService.removeKidFromPlaySite(playSiteUUID, kid1.id());
+        playgroundService.removeKidFromPlaySite(playSiteUUID, kid1.ticketNumber());
 
         // Verify the queue kid is moved to the play site
         assertEquals(kidRequest.name(), playgroundService.getPlaySite(playSiteUUID).kidsOnSite().get(0).name());
-        assertEquals(kidRequest.ticketNumber(), playgroundService.getPlaySite(playSiteUUID).kidsOnSite().get(0).ticketNumber());
+        assertEquals(kidRequest.name(), playgroundService.getPlaySite(playSiteUUID).kidsOnSite().get(0).name());
     }
 
     @Test
@@ -217,12 +216,11 @@ public class PlaygroundServiceTest {
 
         Kid kid = playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest(
                 "Kid1",
-                5,
-                "123"
+                5
         ));
 
         // Remove the kid from the play site.
-        playgroundService.removeKidFromPlaySite(playSiteUUID, kid.id());
+        playgroundService.removeKidFromPlaySite(playSiteUUID, kid.ticketNumber());
 
         // Verify that the kid is no longer present in the kidsOnSite list.
         assertFalse(playgroundService.getPlaySite(playSiteUUID).kidsOnSite().contains(kid));
@@ -249,11 +247,11 @@ public class PlaygroundServiceTest {
                         EquipmentType.DOUBLE_SWINGS.getUUID(), 1
                 ))
         ));
-        KidRequest kidRequest = new KidRequest("Kid1", 5, "123");
+        KidRequest kidRequest = new KidRequest("Kid1", 5);
         Kid kid = playgroundService.enqueueKid(playSiteUUID, kidRequest);
 
         // Remove the kid from the queue
-        playgroundService.dequeueKid(playSiteUUID, kid.id());
+        playgroundService.dequeueKid(playSiteUUID, kid.ticketNumber());
 
         // Verify that the kid is no longer present in the queue
         assertFalse(playgroundService.getPlaySite(playSiteUUID).kidQueue().contains(kidRequest));
@@ -275,7 +273,7 @@ public class PlaygroundServiceTest {
 
 
         // Add a kid to the play site.
-        playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest("Kid1", 5, "123"));
+        playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest("Kid1", 5));
 
         // Get the utilization of the play site.
         Double utilizationPercentage = playgroundService.getPlaySiteUtilization(playSiteUUID);
@@ -292,7 +290,7 @@ public class PlaygroundServiceTest {
         ));
         assertThrows(NoEquipmentFoundException.class, () -> {
             // Add a kid to the play site, expected play-site already full exception.
-            playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest("Kid1", 5, "123"));
+            playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest("Kid1", 5));
         });
 
     }
@@ -310,7 +308,7 @@ public class PlaygroundServiceTest {
         Mockito.when(playSiteUtilizationFactory.getCalculator(Mockito.anySet())).thenReturn(new DefaultPlaySiteUtilization());
 
         // Add a kid to the play site
-        playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest("Kid1", 5, "123"));
+        playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest("Kid1", 5));
 
         // Get the utilization of the play site
         var utilization = playgroundService.getPlaySiteUtilization(playSiteUUID);
@@ -330,9 +328,9 @@ public class PlaygroundServiceTest {
         ));
 
         // Add 3 kids to the play site
-        playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest("Kid1", 5, "123"));
-        playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest("Kid2", 6, "456"));
-        playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest("Kid3", 7, "789"));
+        playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest("Kid1", 5));
+        playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest("Kid2", 6));
+        playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest("Kid3", 7));
 
         // set mock default utilization
         Mockito.when(playSiteUtilizationFactory.getCalculator(Mockito.anySet())).thenReturn(new DefaultPlaySiteUtilization());
@@ -356,10 +354,10 @@ public class PlaygroundServiceTest {
         ));
 
         // add kid into play site
-        playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest("Kid1", 5, "123"));
+        playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest("Kid1", 5));
 
         // add kid into play site
-        playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest("Kid2", 8, "124"));
+        playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest("Kid2", 8));
 
         PlaySiteUtilization utilization = new DefaultPlaySiteUtilization();
 
@@ -372,7 +370,7 @@ public class PlaygroundServiceTest {
     @Test
     void testEnqueueKid_InvalidPlaySiteId() {
         // Create a KidRequest object.
-        KidRequest kidRequest = new KidRequest("John", 8, "TKT001");
+        KidRequest kidRequest = new KidRequest("John", 8);
         // Create a random UUID for the play site ID.
         UUID playSiteId = UUID.randomUUID();
         assertThrows(NotFoundException.class, () -> {
@@ -391,13 +389,13 @@ public class PlaygroundServiceTest {
         ));
 
         // Add a kid to the play site.
-        playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest("Kid1", 5, "123"));
+        playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest("Kid1", 5));
 
         // Add another kid to the play site.
-        playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest("Kid2", 8, "124"));
+        playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest("Kid2", 8));
 
         // Enqueue a third kid.
-        Kid enqueuedKid = playgroundService.enqueueKid(playSiteUUID, new KidRequest("Kid3", 8, "124"));
+        Kid enqueuedKid = playgroundService.enqueueKid(playSiteUUID, new KidRequest("Kid3", 8));
 
         // Get the list of kids in the play site.
         List<Kid> kids = playgroundService.getPlaySiteKids(playSiteUUID);
@@ -423,16 +421,16 @@ public class PlaygroundServiceTest {
         ));
 
         // Add kid into play site.
-        Kid kid1 = playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest("Kid1", 5, "123"));
+        Kid kid1 = playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest("Kid1", 5));
 
         // Add kid into play site.
-        Kid kid2 = playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest("Kid2", 8, "124"));
+        Kid kid2 = playgroundService.addKidToPlaySite(playSiteUUID, new KidRequest("Kid2", 8));
 
         // Get the kid from the play site by their ID.
-        Kid returned_kid = playgroundService.getPlayingKid(playSiteUUID, kid1.id());
+        Kid returned_kid = playgroundService.getPlayingKid(playSiteUUID, kid1.ticketNumber());
         assertEquals(kid1, returned_kid);
 
-        Kid returned_kid2 = playgroundService.getPlayingKid(playSiteUUID, kid2.id());
+        Kid returned_kid2 = playgroundService.getPlayingKid(playSiteUUID, kid2.ticketNumber());
         assertEquals(kid2, returned_kid2);
     }
 
@@ -449,7 +447,7 @@ public class PlaygroundServiceTest {
 
         // Add 10 kids to the play site.
         for (int i = 0; i < 10; i++) {
-            playgroundService.addKidToPlaySite(playSiteId, new KidRequest(String.format("Kid%d", i), i, "124"));
+            playgroundService.addKidToPlaySite(playSiteId, new KidRequest(String.format("Kid%d", i), i));
         }
 
         // Get the list of kids from the play site.
@@ -471,11 +469,11 @@ public class PlaygroundServiceTest {
         ));
 
         // Add a kid to the play site.
-        KidRequest kidRequest = new KidRequest("Kid1", 5, "ticket-number-0001");
+        KidRequest kidRequest = new KidRequest("Kid1", 5);
         Kid kid = playgroundService.addKidToPlaySite(playSiteId, kidRequest);
 
         // Find the kid by ID.
-        Kid foundKid = playgroundService.getPlayingKid(playSiteId, kid.id());
+        Kid foundKid = playgroundService.getPlayingKid(playSiteId, kid.ticketNumber());
 
         // Assert that the found kid is the same as the kid that was added to the play site.
         assertEquals(kid.ticketNumber(), foundKid.ticketNumber());
@@ -491,7 +489,13 @@ public class PlaygroundServiceTest {
 
         // Assert that the list of equipment responses contains the same equipment types as the list of equipment types.
         equipmentTypes.forEach((equipmentType) -> {
-            assertEquals(equipmentType.getUUID(), Objects.requireNonNull(equipmentResponses.stream().filter(equipmentResponse -> equipmentResponse.id() == equipmentType.getUUID()).findFirst().orElse(null)).id());
+            assertEquals(equipmentType.getUUID(),
+                    Objects.requireNonNull(equipmentResponses
+                            .stream()
+                                    .filter(equipmentResponse -> equipmentResponse.id() == equipmentType.getUUID())
+                            .findFirst()
+                            .orElse(null))
+                            .id());
         });
     }
 
