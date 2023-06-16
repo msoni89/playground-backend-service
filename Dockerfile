@@ -1,21 +1,16 @@
-FROM openjdk:17-jdk-slim
+FROM maven:3-openjdk-17-slim AS builder
 
-# Install Maven
-RUN apt-get update && apt-get install -y maven
-# Set the current working directory inside the image
 WORKDIR /app
 
-# Copy maven executable to the image
-COPY mvnw .
-
-# Copy the pom.xml file
 COPY pom.xml .
+COPY src ./src
 
+RUN mvn -f /app/pom.xml clean package
 
-# Copy the project source
-COPY src src
+FROM openjdk:17-slim
 
-# Package the application
-RUN mvn clean install package -DskipTests=true
+WORKDIR /app
 
-CMD ["mvn","spring-boot:run"]
+COPY --from=builder /app/target/*.jar app.jar
+
+CMD ["java", "-jar", "app.jar"]
