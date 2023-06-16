@@ -1,0 +1,362 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.22.2:test (default-test) @ playground-backend-service ---
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.0.4)
+
+2023-06-16T13:29:00.057+03:00  INFO 77033 --- [           main] o.p.controllers.AnalyticControllerTest   : Starting AnalyticControllerTest using Java 17.0.7 with PID 77033 (started by msoni89 in /home/msoni89/Documents/projects/playground-backend-service)
+2023-06-16T13:29:00.059+03:00  INFO 77033 --- [           main] o.p.controllers.AnalyticControllerTest   : No active profile set, falling back to 1 default profile: "default"
+2023-06-16T13:29:01.425+03:00  INFO 77033 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2023-06-16T13:29:01.425+03:00  INFO 77033 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2023-06-16T13:29:01.428+03:00  INFO 77033 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2023-06-16T13:29:01.447+03:00  INFO 77033 --- [           main] o.p.controllers.AnalyticControllerTest   : Started AnalyticControllerTest in 1.575 seconds (process running for 2.262)
+2023-06-16T13:29:02.210+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Created a new play site with ID: 949cc901-0da9-43fa-87bf-a33b51334d6e
+2023-06-16T13:29:02.234+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Added kidRequest 'Kid1' to the play site '949cc901-0da9-43fa-87bf-a33b51334d6e'.
+2023-06-16T13:29:02.239+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Looking for Kid By Id '80231abf-05f6-4758-9e80-f46373ed9653', and play site by id '949cc901-0da9-43fa-87bf-a33b51334d6e'
+[Kid[id=80231abf-05f6-4758-9e80-f46373ed9653, name=Kid1, age=5, ticketNumber=123, status=PLAYING]]
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /api/v1/kids/play-site/949cc901-0da9-43fa-87bf-a33b51334d6e/playing/80231abf-05f6-4758-9e80-f46373ed9653
+       Parameters = {}
+          Headers = [Content-Type:"application/json;charset=UTF-8"]
+             Body = null
+    Session Attrs = {}
+
+Handler:
+             Type = org.project.playgrounds.v1.controller.KidController
+           Method = org.project.playgrounds.v1.controller.KidController#getPlayingKid(UUID, UUID)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Vary:"Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers", Content-Type:"application/json"]
+     Content type = application/json
+             Body = {"ticket_number":"123","id":"80231abf-05f6-4758-9e80-f46373ed9653","name":"Kid1","age":5,"status":"PLAYING"}
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2023-06-16T13:29:02.292+03:00  INFO 77033 --- [           main] o.p.p.v.f.PlaySiteUtilizationFactory     : calculators {DOUBLE_SWINGS=org.project.playgrounds.v1.strategy.DoubleSwingsPlaySiteUtilization@19ee1ae6, DEFAULT=org.project.playgrounds.v1.strategy.DefaultPlaySiteUtilization@72825400}
+2023-06-16T13:29:02.293+03:00  INFO 77033 --- [           main] .p.p.v.s.DoubleSwingsPlaySiteUtilization : Double Swing PlaySiteUtilization calculation called for 949cc901-0da9-43fa-87bf-a33b51334d6e
+2023-06-16T13:29:02.293+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Play site '949cc901-0da9-43fa-87bf-a33b51334d6e' utilization: 100.0%.
+2023-06-16T13:29:02.314+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Created a new play site with ID: accca9fc-198a-4057-b737-b46087c5c1ef
+2023-06-16T13:29:02.318+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Added kidRequest 'Kid1' to the play site 'accca9fc-198a-4057-b737-b46087c5c1ef'.
+2023-06-16T13:29:02.321+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Looking for Kid By Id '773c3324-7004-4a11-9112-8520f166aca9', and play site by id 'accca9fc-198a-4057-b737-b46087c5c1ef'
+[Kid[id=773c3324-7004-4a11-9112-8520f166aca9, name=Kid1, age=5, ticketNumber=123, status=PLAYING]]
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /api/v1/kids/play-site/accca9fc-198a-4057-b737-b46087c5c1ef/playing/773c3324-7004-4a11-9112-8520f166aca9
+       Parameters = {}
+          Headers = [Content-Type:"application/json;charset=UTF-8"]
+             Body = null
+    Session Attrs = {}
+
+Handler:
+             Type = org.project.playgrounds.v1.controller.KidController
+           Method = org.project.playgrounds.v1.controller.KidController#getPlayingKid(UUID, UUID)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Vary:"Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers", Content-Type:"application/json"]
+     Content type = application/json
+             Body = {"ticket_number":"123","id":"773c3324-7004-4a11-9112-8520f166aca9","name":"Kid1","age":5,"status":"PLAYING"}
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2023-06-16T13:29:02.325+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Total Visitor '2'
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.734 s - in org.project.controllers.AnalyticControllerTest
+[INFO] Running org.project.controllers.PlaygroundControllerTest
+2023-06-16T13:29:02.334+03:00  INFO 77033 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [org.project.controllers.PlaygroundControllerTest]: PlaygroundControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2023-06-16T13:29:02.337+03:00  INFO 77033 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration org.project.PlaygroundApplication for test class org.project.controllers.PlaygroundControllerTest
+2023-06-16T13:29:02.345+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Created a new play site with ID: 34f7ad79-2e58-475b-9964-46787cb49d23
+2023-06-16T13:29:02.349+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Play site by id '34f7ad79-2e58-475b-9964-46787cb49d23'
+2023-06-16T13:29:02.373+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Created a new play site with ID: 99b7a9c6-e84a-44db-b2a2-176ef464ce2d
+2023-06-16T13:29:02.376+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Created a new play site with ID: 743de4d0-3597-417f-a047-2adeb70e482e
+2023-06-16T13:29:02.379+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Created a new play site with ID: 4bf4f009-dbcd-4a2d-a625-1bf901dcafe2
+2023-06-16T13:29:02.382+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Created a new play site with ID: b1a2fb7c-bcf5-4fb6-a212-a2b2fdbd27f0
+2023-06-16T13:29:02.385+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Created a new play site with ID: cd1dbfc8-16a0-43ad-9b98-8b6f2d7aa85d
+2023-06-16T13:29:02.388+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Created a new play site with ID: af8240f5-63e5-4ffb-bc54-91922e2fa50a
+2023-06-16T13:29:02.391+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Created a new play site with ID: 03df0ca0-f310-4962-a588-b410fa7f2c1a
+2023-06-16T13:29:02.393+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Created a new play site with ID: 704872ce-e934-4a58-bdcf-ad3422c35239
+2023-06-16T13:29:02.396+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Created a new play site with ID: a1de2cd9-4f9e-4eb6-9004-f82854e0c654
+2023-06-16T13:29:02.398+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Play sites: [PlaySiteResponse[id=accca9fc-198a-4057-b737-b46087c5c1ef, playSite=PlaySite[id=accca9fc-198a-4057-b737-b46087c5c1ef, name=play-site-0004, ageRestriction=10, equipments=[Equipment[id=cf9b5a00-0bb2-11ee-be56-0242ac120002, name=DOUBLE_SWINGS, capacity=1]], kidsOnSite=[Kid[id=773c3324-7004-4a11-9112-8520f166aca9, name=Kid1, age=5, ticketNumber=123, status=PLAYING]], kidQueue=[]]], PlaySiteResponse[id=b1a2fb7c-bcf5-4fb6-a212-a2b2fdbd27f0, playSite=PlaySite[id=b1a2fb7c-bcf5-4fb6-a212-a2b2fdbd27f0, name=play-site-0003, ageRestriction=10, equipments=[Equipment[id=cf9b5a00-0bb2-11ee-be56-0242ac120002, name=DOUBLE_SWINGS, capacity=1]], kidsOnSite=[], kidQueue=[]]], PlaySiteResponse[id=03df0ca0-f310-4962-a588-b410fa7f2c1a, playSite=PlaySite[id=03df0ca0-f310-4962-a588-b410fa7f2c1a, name=play-site-0006, ageRestriction=10, equipments=[Equipment[id=cf9b5a00-0bb2-11ee-be56-0242ac120002, name=DOUBLE_SWINGS, capacity=1]], kidsOnSite=[], kidQueue=[]]], PlaySiteResponse[id=99b7a9c6-e84a-44db-b2a2-176ef464ce2d, playSite=PlaySite[id=99b7a9c6-e84a-44db-b2a2-176ef464ce2d, name=play-site-0000, ageRestriction=10, equipments=[Equipment[id=cf9b5a00-0bb2-11ee-be56-0242ac120002, name=DOUBLE_SWINGS, capacity=1]], kidsOnSite=[], kidQueue=[]]], PlaySiteResponse[id=34f7ad79-2e58-475b-9964-46787cb49d23, playSite=PlaySite[id=34f7ad79-2e58-475b-9964-46787cb49d23, name=play-site-0004, ageRestriction=10, equipments=[Equipment[id=cf9b5a00-0bb2-11ee-be56-0242ac120002, name=DOUBLE_SWINGS, capacity=1]], kidsOnSite=[], kidQueue=[]]], PlaySiteResponse[id=949cc901-0da9-43fa-87bf-a33b51334d6e, playSite=PlaySite[id=949cc901-0da9-43fa-87bf-a33b51334d6e, name=play-site-0004, ageRestriction=10, equipments=[Equipment[id=cf9b5a00-0bb2-11ee-be56-0242ac120002, name=DOUBLE_SWINGS, capacity=1]], kidsOnSite=[Kid[id=80231abf-05f6-4758-9e80-f46373ed9653, name=Kid1, age=5, ticketNumber=123, status=PLAYING]], kidQueue=[]]], PlaySiteResponse[id=a1de2cd9-4f9e-4eb6-9004-f82854e0c654, playSite=PlaySite[id=a1de2cd9-4f9e-4eb6-9004-f82854e0c654, name=play-site-0008, ageRestriction=10, equipments=[Equipment[id=cf9b5a00-0bb2-11ee-be56-0242ac120002, name=DOUBLE_SWINGS, capacity=1]], kidsOnSite=[], kidQueue=[]]], PlaySiteResponse[id=cd1dbfc8-16a0-43ad-9b98-8b6f2d7aa85d, playSite=PlaySite[id=cd1dbfc8-16a0-43ad-9b98-8b6f2d7aa85d, name=play-site-0004, ageRestriction=10, equipments=[Equipment[id=cf9b5a00-0bb2-11ee-be56-0242ac120002, name=DOUBLE_SWINGS, capacity=1]], kidsOnSite=[], kidQueue=[]]], PlaySiteResponse[id=af8240f5-63e5-4ffb-bc54-91922e2fa50a, playSite=PlaySite[id=af8240f5-63e5-4ffb-bc54-91922e2fa50a, name=play-site-0005, ageRestriction=10, equipments=[Equipment[id=cf9b5a00-0bb2-11ee-be56-0242ac120002, name=DOUBLE_SWINGS, capacity=1]], kidsOnSite=[], kidQueue=[]]], PlaySiteResponse[id=704872ce-e934-4a58-bdcf-ad3422c35239, playSite=PlaySite[id=704872ce-e934-4a58-bdcf-ad3422c35239, name=play-site-0007, ageRestriction=10, equipments=[Equipment[id=cf9b5a00-0bb2-11ee-be56-0242ac120002, name=DOUBLE_SWINGS, capacity=1]], kidsOnSite=[], kidQueue=[]]], PlaySiteResponse[id=743de4d0-3597-417f-a047-2adeb70e482e, playSite=PlaySite[id=743de4d0-3597-417f-a047-2adeb70e482e, name=play-site-0001, ageRestriction=10, equipments=[Equipment[id=cf9b5a00-0bb2-11ee-be56-0242ac120002, name=DOUBLE_SWINGS, capacity=1]], kidsOnSite=[], kidQueue=[]]], PlaySiteResponse[id=4bf4f009-dbcd-4a2d-a625-1bf901dcafe2, playSite=PlaySite[id=4bf4f009-dbcd-4a2d-a625-1bf901dcafe2, name=play-site-0002, ageRestriction=10, equipments=[Equipment[id=cf9b5a00-0bb2-11ee-be56-0242ac120002, name=DOUBLE_SWINGS, capacity=1]], kidsOnSite=[], kidQueue=[]]]]
+2023-06-16T13:29:02.429+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Created a new play site with ID: a0b6caff-597d-4e36-8690-5b7f42174c4b
+2023-06-16T13:29:02.430+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Play site by id 'a0b6caff-597d-4e36-8690-5b7f42174c4b'
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /api/v1/play-sites/a0b6caff-597d-4e36-8690-5b7f42174c4b
+       Parameters = {}
+          Headers = [Content-Type:"application/json;charset=UTF-8"]
+             Body = null
+    Session Attrs = {}
+
+Handler:
+             Type = org.project.playgrounds.v1.controller.PlaySiteController
+           Method = org.project.playgrounds.v1.controller.PlaySiteController#getPlaySite(UUID)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Vary:"Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers", Content-Type:"application/json"]
+     Content type = application/json
+             Body = {"age_restriction":10,"kids_on_site":[],"kid_queue":[],"id":"a0b6caff-597d-4e36-8690-5b7f42174c4b","name":"play-site-0004","equipments":[{"id":"cf9b5a00-0bb2-11ee-be56-0242ac120002","name":"DOUBLE_SWINGS","capacity":1}],"capacity":1,"is_play_site_full":false,"occupied_capacity":0}
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.064 s - in org.project.controllers.PlaygroundControllerTest
+[INFO] Running org.project.controllers.KidControllerTest
+2023-06-16T13:29:02.437+03:00  INFO 77033 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [org.project.controllers.KidControllerTest]: KidControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2023-06-16T13:29:02.441+03:00  INFO 77033 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration org.project.PlaygroundApplication for test class org.project.controllers.KidControllerTest
+2023-06-16T13:29:02.452+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Created a new play site with ID: adf471e2-ff9d-4bb1-986d-5b5ec64eb375
+2023-06-16T13:29:02.455+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Added kidRequest 'Kid1' to the play site 'adf471e2-ff9d-4bb1-986d-5b5ec64eb375'.
+2023-06-16T13:29:02.458+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Looking for Kid By Id '4712b21b-6610-4d2f-b4eb-aeec83dbcc0a', and play site by id 'adf471e2-ff9d-4bb1-986d-5b5ec64eb375'
+[Kid[id=4712b21b-6610-4d2f-b4eb-aeec83dbcc0a, name=Kid1, age=5, ticketNumber=123, status=PLAYING]]
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /api/v1/kids/play-site/adf471e2-ff9d-4bb1-986d-5b5ec64eb375/playing/4712b21b-6610-4d2f-b4eb-aeec83dbcc0a
+       Parameters = {}
+          Headers = [Content-Type:"application/json;charset=UTF-8"]
+             Body = null
+    Session Attrs = {}
+
+Handler:
+             Type = org.project.playgrounds.v1.controller.KidController
+           Method = org.project.playgrounds.v1.controller.KidController#getPlayingKid(UUID, UUID)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Vary:"Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers", Content-Type:"application/json"]
+     Content type = application/json
+             Body = {"ticket_number":"123","id":"4712b21b-6610-4d2f-b4eb-aeec83dbcc0a","name":"Kid1","age":5,"status":"PLAYING"}
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2023-06-16T13:29:02.463+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Removed kid '4712b21b-6610-4d2f-b4eb-aeec83dbcc0a' from play site 'adf471e2-ff9d-4bb1-986d-5b5ec64eb375'.
+2023-06-16T13:29:02.472+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Created a new play site with ID: 338e5ec4-1064-4b45-99b6-6ee3454562cd
+2023-06-16T13:29:02.474+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Added kidRequest 'Kid1' to the play site '338e5ec4-1064-4b45-99b6-6ee3454562cd'.
+2023-06-16T13:29:02.477+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Looking for Kid By Id 'c49acd5c-a309-492c-b463-6147126c1b19', and play site by id '338e5ec4-1064-4b45-99b6-6ee3454562cd'
+[Kid[id=c49acd5c-a309-492c-b463-6147126c1b19, name=Kid1, age=5, ticketNumber=123, status=PLAYING]]
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /api/v1/kids/play-site/338e5ec4-1064-4b45-99b6-6ee3454562cd/playing/c49acd5c-a309-492c-b463-6147126c1b19
+       Parameters = {}
+          Headers = [Content-Type:"application/json;charset=UTF-8"]
+             Body = null
+    Session Attrs = {}
+
+Handler:
+             Type = org.project.playgrounds.v1.controller.KidController
+           Method = org.project.playgrounds.v1.controller.KidController#getPlayingKid(UUID, UUID)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [Vary:"Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers", Content-Type:"application/json"]
+     Content type = application/json
+             Body = {"ticket_number":"123","id":"c49acd5c-a309-492c-b463-6147126c1b19","name":"Kid1","age":5,"status":"PLAYING"}
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2023-06-16T13:29:02.488+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Created a new play site with ID: e39273f0-bba4-4d4d-957f-3699d3abd9ec
+2023-06-16T13:29:02.491+03:00 ERROR 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : KidRequest 'Kid1' does not accept in play site 'e39273f0-bba4-4d4d-957f-3699d3abd9ec'.
+2023-06-16T13:29:02.503+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Created a new play site with ID: 6b55c8ca-6f0d-4127-8c74-ac9b2666d85f
+2023-06-16T13:29:02.507+03:00 ERROR 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Kid 'Kid1' enqueue rejected for the play site '6b55c8ca-6f0d-4127-8c74-ac9b2666d85f'
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.064 s - in org.project.controllers.KidControllerTest
+[INFO] Running org.project.services.PlaygroundServiceTest
+2023-06-16T13:29:02.737+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Created a new play site with ID: adb562f3-af73-4a1d-a439-690062a241c1
+2023-06-16T13:29:02.738+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Added kidRequest 'Kid1' to the play site 'adb562f3-af73-4a1d-a439-690062a241c1'.
+2023-06-16T13:29:02.744+03:00 ERROR 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : KidRequest 'Kid2' does not accept in play site 'adb562f3-af73-4a1d-a439-690062a241c1'.
+2023-06-16T13:29:02.773+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Created a new play site with ID: c115b773-a416-4822-a499-56340575e974
+2023-06-16T13:29:02.773+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Added kidRequest 'Kid1' to the play site 'c115b773-a416-4822-a499-56340575e974'.
+2023-06-16T13:29:02.773+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Looking for Kid By Id '6950ebe4-56e4-4611-a1da-4aea75bee8a8', and play site by id 'c115b773-a416-4822-a499-56340575e974'
+[Kid[id=6950ebe4-56e4-4611-a1da-4aea75bee8a8, name=Kid1, age=5, ticketNumber=ticket-number-0001, status=PLAYING]]
+2023-06-16T13:29:02.779+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Created a new play site with ID: fc22eeae-2947-48d4-962f-5a4bc20e2204
+2023-06-16T13:29:02.780+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Added kidRequest 'Kid1' to the play site 'fc22eeae-2947-48d4-962f-5a4bc20e2204'.
+2023-06-16T13:29:02.780+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Added kidRequest 'Kid2' to the play site 'fc22eeae-2947-48d4-962f-5a4bc20e2204'.
+2023-06-16T13:29:02.780+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Looking for Kid By Id '13365a37-b2b6-4a78-9a9e-6b3ed8360f11', and play site by id 'fc22eeae-2947-48d4-962f-5a4bc20e2204'
+[Kid[id=13365a37-b2b6-4a78-9a9e-6b3ed8360f11, name=Kid1, age=5, ticketNumber=123, status=PLAYING], Kid[id=7309bd59-91a3-4a92-b021-cdedd039ead9, name=Kid2, age=8, ticketNumber=124, status=PLAYING]]
+2023-06-16T13:29:02.781+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Looking for Kid By Id '7309bd59-91a3-4a92-b021-cdedd039ead9', and play site by id 'fc22eeae-2947-48d4-962f-5a4bc20e2204'
+[Kid[id=13365a37-b2b6-4a78-9a9e-6b3ed8360f11, name=Kid1, age=5, ticketNumber=123, status=PLAYING], Kid[id=7309bd59-91a3-4a92-b021-cdedd039ead9, name=Kid2, age=8, ticketNumber=124, status=PLAYING]]
+2023-06-16T13:29:02.787+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Created a new play site with ID: bdba98a0-2315-4b36-9571-e08e1772f32b
+2023-06-16T13:29:02.788+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Added kidRequest 'Kid1' to the play site 'bdba98a0-2315-4b36-9571-e08e1772f32b'.
+2023-06-16T13:29:02.788+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Added kidRequest 'Kid2' to the play site 'bdba98a0-2315-4b36-9571-e08e1772f32b'.
+2023-06-16T13:29:02.817+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Enqueued kid 'Kid3' in the play site 'bdba98a0-2315-4b36-9571-e08e1772f32b'.
+2023-06-16T13:29:02.817+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Play site by id 'bdba98a0-2315-4b36-9571-e08e1772f32b', kids [Kid[id=acfa5d33-3b61-47d8-8893-f85b09123a4b, name=Kid1, age=5, ticketNumber=123, status=PLAYING], Kid[id=fb02e63b-8371-4ac4-a1eb-4640448be5e8, name=Kid2, age=8, ticketNumber=124, status=PLAYING], Kid[id=7be59e80-3e65-4e64-b3be-94e9d5bb29b5, name=Kid3, age=8, ticketNumber=124, status=WAITING]]
+2023-06-16T13:29:02.823+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Created a new play site with ID: fbe8f59a-d55c-49eb-939b-9487d5ed249a
+2023-06-16T13:29:02.823+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Added kidRequest 'Kid1' to the play site 'fbe8f59a-d55c-49eb-939b-9487d5ed249a'.
+2023-06-16T13:29:02.823+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Added kidRequest 'Kid2' to the play site 'fbe8f59a-d55c-49eb-939b-9487d5ed249a'.
+2023-06-16T13:29:02.835+03:00  INFO 77033 --- [           main] o.p.p.v.s.DefaultPlaySiteUtilization     : Default PlaySiteUtilization calculation called for fbe8f59a-d55c-49eb-939b-9487d5ed249a
+2023-06-16T13:29:02.835+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Play site 'fbe8f59a-d55c-49eb-939b-9487d5ed249a' utilization: 100.0%.
+2023-06-16T13:29:02.840+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Created a new play site with ID: 3bb62599-53df-485e-9e06-4fba59e7e909
+2023-06-16T13:29:02.840+03:00 ERROR 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Kid 'Kid1' does not meet the age restriction for the play site '3bb62599-53df-485e-9e06-4fba59e7e909'
+2023-06-16T13:29:02.841+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Play site by id '3bb62599-53df-485e-9e06-4fba59e7e909'
+2023-06-16T13:29:02.846+03:00 ERROR 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : The play site with UUID bad21743-02b2-49b7-b863-e4610d36e0b1 does not exist.
+2023-06-16T13:29:02.851+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Created a new play site with ID: d0bd4541-facc-4bb3-893a-3c71af3931ef
+2023-06-16T13:29:02.851+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Added kidRequest 'Kid1' to the play site 'd0bd4541-facc-4bb3-893a-3c71af3931ef'.
+2023-06-16T13:29:02.852+03:00 ERROR 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : KidRequest 'Kid2' does not accept in play site 'd0bd4541-facc-4bb3-893a-3c71af3931ef'.
+2023-06-16T13:29:02.853+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Enqueued kid 'Kid3' in the play site 'd0bd4541-facc-4bb3-893a-3c71af3931ef'.
+2023-06-16T13:29:02.853+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Moved kid 'Kid3' from play site waiting state to playing state 'd0bd4541-facc-4bb3-893a-3c71af3931ef'.
+2023-06-16T13:29:02.853+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Removed kid 'c922afda-28b5-4578-9ca0-8d64acec6623' from play site 'd0bd4541-facc-4bb3-893a-3c71af3931ef'.
+2023-06-16T13:29:02.853+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Play site by id 'd0bd4541-facc-4bb3-893a-3c71af3931ef'
+2023-06-16T13:29:02.853+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Play site by id 'd0bd4541-facc-4bb3-893a-3c71af3931ef'
+2023-06-16T13:29:02.859+03:00 ERROR 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : The play site with UUID 0453d2ae-9e60-4e93-bbaa-c8e1022096d7 does not exist.
+2023-06-16T13:29:02.868+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Created a new play site with ID: 7730c0a2-7421-44eb-8bcd-82bb6a47a7a6
+2023-06-16T13:29:02.868+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Added kidRequest 'Kid1' to the play site '7730c0a2-7421-44eb-8bcd-82bb6a47a7a6'.
+2023-06-16T13:29:02.868+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Removed kid 'fdf14260-32e0-4712-9506-b1a4ecb54f35' from play site '7730c0a2-7421-44eb-8bcd-82bb6a47a7a6'.
+2023-06-16T13:29:02.868+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Play site by id '7730c0a2-7421-44eb-8bcd-82bb6a47a7a6'
+2023-06-16T13:29:02.872+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Created a new play site with ID: 641c9321-1a14-4f4e-a56c-32db4704a9c1
+2023-06-16T13:29:02.873+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Added kidRequest 'Kid1' to the play site '641c9321-1a14-4f4e-a56c-32db4704a9c1'.
+2023-06-16T13:29:02.874+03:00  INFO 77033 --- [           main] o.p.p.v.s.DefaultPlaySiteUtilization     : Default PlaySiteUtilization calculation called for 641c9321-1a14-4f4e-a56c-32db4704a9c1
+2023-06-16T13:29:02.874+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Play site '641c9321-1a14-4f4e-a56c-32db4704a9c1' utilization: 33.33333333333333%.
+2023-06-16T13:29:02.878+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Created a new play site with ID: 148bb123-3029-4110-a120-8344bc1a65f6
+2023-06-16T13:29:02.879+03:00 ERROR 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : KidRequest 'Kid1' does not accept in play site '148bb123-3029-4110-a120-8344bc1a65f6'. No Equipments found.
+2023-06-16T13:29:02.882+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Created a new play site with ID: a270fc7b-6897-4a0c-a777-a57c7af50b57
+2023-06-16T13:29:02.882+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Added kidRequest 'Kid1' to the play site 'a270fc7b-6897-4a0c-a777-a57c7af50b57'.
+2023-06-16T13:29:02.882+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Added kidRequest 'Kid2' to the play site 'a270fc7b-6897-4a0c-a777-a57c7af50b57'.
+2023-06-16T13:29:02.883+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Added kidRequest 'Kid3' to the play site 'a270fc7b-6897-4a0c-a777-a57c7af50b57'.
+2023-06-16T13:29:02.884+03:00  INFO 77033 --- [           main] o.p.p.v.s.DefaultPlaySiteUtilization     : Default PlaySiteUtilization calculation called for a270fc7b-6897-4a0c-a777-a57c7af50b57
+2023-06-16T13:29:02.884+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Play site 'a270fc7b-6897-4a0c-a777-a57c7af50b57' utilization: 100.0%.
+2023-06-16T13:29:02.887+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Created a new play site with ID: e48049d8-6da6-48e3-ab98-9f54aa197216
+2023-06-16T13:29:02.887+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Added kidRequest 'Kid0' to the play site 'e48049d8-6da6-48e3-ab98-9f54aa197216'.
+2023-06-16T13:29:02.887+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Added kidRequest 'Kid1' to the play site 'e48049d8-6da6-48e3-ab98-9f54aa197216'.
+2023-06-16T13:29:02.888+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Added kidRequest 'Kid2' to the play site 'e48049d8-6da6-48e3-ab98-9f54aa197216'.
+2023-06-16T13:29:02.888+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Added kidRequest 'Kid3' to the play site 'e48049d8-6da6-48e3-ab98-9f54aa197216'.
+2023-06-16T13:29:02.888+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Added kidRequest 'Kid4' to the play site 'e48049d8-6da6-48e3-ab98-9f54aa197216'.
+2023-06-16T13:29:02.888+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Added kidRequest 'Kid5' to the play site 'e48049d8-6da6-48e3-ab98-9f54aa197216'.
+2023-06-16T13:29:02.888+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Added kidRequest 'Kid6' to the play site 'e48049d8-6da6-48e3-ab98-9f54aa197216'.
+2023-06-16T13:29:02.888+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Added kidRequest 'Kid7' to the play site 'e48049d8-6da6-48e3-ab98-9f54aa197216'.
+2023-06-16T13:29:02.888+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Added kidRequest 'Kid8' to the play site 'e48049d8-6da6-48e3-ab98-9f54aa197216'.
+2023-06-16T13:29:02.888+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Added kidRequest 'Kid9' to the play site 'e48049d8-6da6-48e3-ab98-9f54aa197216'.
+2023-06-16T13:29:02.889+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Play site by id 'e48049d8-6da6-48e3-ab98-9f54aa197216', kids [Kid[id=b1a9f6fe-ebd4-41ee-bd4f-71d8242410b1, name=Kid0, age=0, ticketNumber=124, status=PLAYING], Kid[id=4510d069-2840-4a9f-b105-e154f83a508d, name=Kid1, age=1, ticketNumber=124, status=PLAYING], Kid[id=125a08bb-2349-42ec-93f6-d515c8144d17, name=Kid2, age=2, ticketNumber=124, status=PLAYING], Kid[id=dd6e0152-ce33-414f-bd5c-07adc5ff5af4, name=Kid3, age=3, ticketNumber=124, status=PLAYING], Kid[id=a09d16ea-970b-4151-beda-5e77c796787e, name=Kid4, age=4, ticketNumber=124, status=PLAYING], Kid[id=7d3dfb2b-2034-4f08-8355-cd26ea54eb64, name=Kid5, age=5, ticketNumber=124, status=PLAYING], Kid[id=59bb3395-b728-4dc2-8187-a15442afdba8, name=Kid6, age=6, ticketNumber=124, status=PLAYING], Kid[id=f57c279f-d887-4a11-aa8f-f9b38003c4c3, name=Kid7, age=7, ticketNumber=124, status=PLAYING], Kid[id=2dd9a510-e563-4cb0-9c48-07181b9a9a98, name=Kid8, age=8, ticketNumber=124, status=PLAYING], Kid[id=3fb9faf1-512c-4113-b944-4a4669610b04, name=Kid9, age=9, ticketNumber=124, status=PLAYING]]
+2023-06-16T13:29:02.894+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Created a new play site with ID: 0b444228-24b9-438a-a64b-340981cac169
+2023-06-16T13:29:02.894+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Enqueued kid 'Kid1' in the play site '0b444228-24b9-438a-a64b-340981cac169'.
+2023-06-16T13:29:02.895+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Removed kid with ID 84c2e241-5deb-4bbc-90c5-ba0106ea385d from the queue in the play site with ID 0b444228-24b9-438a-a64b-340981cac169.
+2023-06-16T13:29:02.895+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Play site by id '0b444228-24b9-438a-a64b-340981cac169'
+2023-06-16T13:29:02.899+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Created a new play site with ID: 8744006b-0845-4fdd-be82-f2d253adc0e9
+2023-06-16T13:29:02.899+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Play site by id '8744006b-0845-4fdd-be82-f2d253adc0e9'
+2023-06-16T13:29:02.899+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Play site by id '8744006b-0845-4fdd-be82-f2d253adc0e9'
+2023-06-16T13:29:02.899+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Play site by id '8744006b-0845-4fdd-be82-f2d253adc0e9'
+2023-06-16T13:29:02.902+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Created a new play site with ID: 86efb207-d0ba-4fbd-adc8-a473e6f11eec
+2023-06-16T13:29:02.903+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Added kidRequest 'Kid1' to the play site '86efb207-d0ba-4fbd-adc8-a473e6f11eec'.
+2023-06-16T13:29:02.903+03:00 ERROR 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : KidRequest 'Kid2' does not accept in play site '86efb207-d0ba-4fbd-adc8-a473e6f11eec'.
+2023-06-16T13:29:02.905+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Enqueued kid 'Kid3' in the play site '86efb207-d0ba-4fbd-adc8-a473e6f11eec'.
+2023-06-16T13:29:02.908+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Created a new play site with ID: 63e19ba9-8a28-4639-9ad2-57260dfa8873
+2023-06-16T13:29:02.908+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Added kidRequest 'Kid1' to the play site '63e19ba9-8a28-4639-9ad2-57260dfa8873'.
+2023-06-16T13:29:02.909+03:00 ERROR 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : KidRequest 'Kid2' does not accept in play site '63e19ba9-8a28-4639-9ad2-57260dfa8873'.
+2023-06-16T13:29:02.911+03:00 ERROR 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Kid 'Kid3' enqueue rejected for the play site '63e19ba9-8a28-4639-9ad2-57260dfa8873'
+2023-06-16T13:29:02.914+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Created a new play site with ID: 8c3de30b-13c7-4be3-8b42-d3e1e3275320
+2023-06-16T13:29:02.915+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Added kidRequest 'Kid1' to the play site '8c3de30b-13c7-4be3-8b42-d3e1e3275320'.
+2023-06-16T13:29:02.915+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Play site by id '8c3de30b-13c7-4be3-8b42-d3e1e3275320'
+2023-06-16T13:29:02.916+03:00 ERROR 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : KidRequest 'Kid2' does not accept in play site '8c3de30b-13c7-4be3-8b42-d3e1e3275320'.
+2023-06-16T13:29:02.916+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Play site by id '8c3de30b-13c7-4be3-8b42-d3e1e3275320'
+2023-06-16T13:29:02.917+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Enqueued kid 'Kid2' in the play site '8c3de30b-13c7-4be3-8b42-d3e1e3275320'.
+2023-06-16T13:29:02.917+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Play site by id '8c3de30b-13c7-4be3-8b42-d3e1e3275320'
+2023-06-16T13:29:02.920+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Created a new play site with ID: 146f071f-d633-4eca-a001-03162aef8f8c
+2023-06-16T13:29:02.921+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Added kidRequest 'Kid1' to the play site '146f071f-d633-4eca-a001-03162aef8f8c'.
+2023-06-16T13:29:02.922+03:00  INFO 77033 --- [           main] .p.p.v.s.DoubleSwingsPlaySiteUtilization : Double Swing PlaySiteUtilization calculation called for 146f071f-d633-4eca-a001-03162aef8f8c
+2023-06-16T13:29:02.922+03:00  INFO 77033 --- [           main] o.p.p.v1.service.PlaygroundService       : Play site '146f071f-d633-4eca-a001-03162aef8f8c' utilization: 100.0%.
+[INFO] Tests run: 22, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.408 s - in org.project.services.PlaygroundServiceTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 32, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] Building jar: /home/msoni89/Documents/projects/playground-backend-service/target/playground-backend-service-0.0.1-SNAPSHOT.jar
+[INFO] 
+[INFO] --- spring-boot-maven-plugin:3.0.4:repackage (repackage) @ playground-backend-service ---
+[INFO] Replacing main artifact with repackaged archive
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  9.663 s
+[INFO] Finished at: 2023-06-16T13:29:05+03:00
+[INFO] ------------------------------------------------------------------------
